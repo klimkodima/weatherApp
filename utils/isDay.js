@@ -1,6 +1,5 @@
-const isDay = ()  => {
-    const hours = new Date().getHours();
-     return hours > 8 && hours < 18;
+const isDay = (sunrise, sunset)  => {
+     return new Date(sunrise * 1000) < new Date() && new Date() < new Date(sunset * 1000);
 }
 
 export default isDay;

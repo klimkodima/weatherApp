@@ -3,11 +3,11 @@ import { Ionicons } from '@expo/vector-icons';
 
 import theme from '../../theme';
 
-export default function Location({ city }) {
+export default function Location({ city, country }) {
   return (
     <View style={styles.container}>
-      <Ionicons name="md-location-sharp" size={13} color="white" />
-      <Text style={styles.location}>{city}</Text>
+      <Ionicons name="md-location-sharp" size={13} color="black" />
+      <Text style={styles.location}>{city} {country}</Text>
     </View>
   )
 }
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   },
   location: {
     paddingLeft: '10px',
-    color: theme.colors.textPrimary,
+    color: theme.colors.textSecondary,
     fontStyle: theme.fonts.main,
     fontWeight: theme.fontWeights.normal,
     fontSize: theme.fontSizes.location

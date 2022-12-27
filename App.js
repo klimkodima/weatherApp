@@ -1,16 +1,14 @@
 import { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { ImageBackground, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import * as Location from 'expo-location';
 
 import  Weather  from './components/Weather/Weather';
 import  Footer  from './components/Footer/Footer';
+import  Background  from './components/Background/Background';
 import  AppBar  from './components/AppBar/AppBar';
 import getWeather from './api/getWeather';
 import isDay from './utils/isDay';
-
-import dayImg from './assets/images/background1.png';
-import nightImg from './assets/images/background2.png';
 
 export default function App() {
 
@@ -33,15 +31,15 @@ export default function App() {
     })();
   }, []);
 
+  const isDayNow = isDay(weather?.sys?.sunrise, weather?.sys?.sunset);
 
   return (
     <View style={styles.container}>
-      <ImageBackground resizeMode='stretch' source={isDay ? dayImg : nightImg} style={styles.backgroundImage}>
-          {weather && <AppBar city={weather.name} />}
+      <Background isDayNow={isDayNow}/>
+          {weather && <AppBar city={weather.name} country={weather.sys.country} />}
           <Weather weather={weather} />
-          <StatusBar style="auto" />
-      </ImageBackground>
       <Footer weather={weather} />
+      <StatusBar style="auto" />
     </View>
   );
 }
@@ -49,8 +47,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    position: 'relative'
   },
-  backgroundImage: {
-    flex: 2,
-  }
 })

@@ -11,7 +11,8 @@ const theme = {
       appBar: 16,
       location: 22,
       weatherDescription: 15,
-      temp: 80
+      temp: 100,
+      deg: 40
     },
     fonts: {
       main: Platform.select({
